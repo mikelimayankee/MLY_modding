@@ -113,30 +113,53 @@ The `pschatzmann/ESP32-A2DP` library already exposes AVRCP metadata callbacks.
   interface; useful reference for **iAP1 serial message framing** in the
   iPod-device direction.
 
-## 6. Physical interface — decision: male 30-pin plug
+## 6. Physical interface — plug into the factory cable
 
-The adapter presents a **male 30-pin Apple dock plug** and plugs into the
-existing factory Nissan→30-pin cable (284H2-1BA0B). Rationale:
+The adapter mates directly with the existing factory Nissan→30-pin cable
+(284H2-1BA0B), rather than tapping the Nissan-proprietary harness. Rationale:
 
 - Fully reversible, no cutting into the Nissan harness.
 - No need to reverse-engineer the Nissan-proprietary console pinout.
-- 30-pin male connectors/breakouts are still sourceable.
+- 30-pin connectors/breakouts are still sourceable.
+
+**Connector gender (confirm with cable in hand):** an iPod's port is *female*,
+so the factory cable's iPod-end is almost certainly a **male** plug. To "become
+the iPod," the adapter therefore likely needs a **female 30-pin receptacle** —
+not a male plug. Confirm visually when the cable is on the bench; the inline
+breakout used for capture (§7a) is dual-gender so it sidesteps this for recon.
 
 Trade-off vs. tapping the Nissan harness directly: slightly less "hidden," but
 far lower risk and effort for a one-off. Revisit only if a cleaner permanent
 install is wanted later.
 
-## 7. Draft bill of materials (first prototype)
+## 7. Bill of materials
+
+### 7a. Phase 1 — recon / handshake-capture tooling
+
+Everything needed to passively tap a real iPod ↔ car session and capture the
+handshake (see procedure in §10, Phase 1). Buy this set first.
+
+| Item | Suggested part | ~Cost | Purpose |
+|------|----------------|-------|---------|
+| Reference iPod | Any junk **30-pin iPod** (nano 1–3G / classic / touch); broken screen / dead battery OK as long as it boots | $15–30 | Known-good device to capture real iAP1 traffic |
+| Inline 30-pin breakout | 30-pin **male↔female pass-through / dock extender** with pins broken out to pads/header | $5–15 | Insert between car cable and iPod so both talk normally while you probe |
+| Logic analyzer | 8-ch USB analyzer (Saleae clone), 3.3 V logic threshold | $10–15 | **Critical** — sniff iAP1 on pins 12/13; decode with PulseView/sigrok |
+| Multimeter | any | — | Measure pin-21 ID resistor, verify power-rail voltages, confirm pin-1 orientation |
+| Dupont/jumper leads | — | — | Tap breakout pads → analyzer |
+
+> If no breakout is sold for your needs, cut a cheap 30-pin male-to-female
+> extender cable and tap the wires, or wire one male + one female 30-pin
+> connector pin-to-pin on protoboard and probe the middle.
+
+### 7b. Prototype build BOM (Phases 2+)
 
 | Item | Suggested part | Purpose |
 |------|----------------|---------|
 | MCU + Bluetooth | ESP32-WROVER (Classic BT + PSRAM, for AAC) | A2DP/AVRCP + iAP1 + control logic |
 | Audio DAC | PCM5102 I²S DAC board | Clean analog line-out to car pins 3/4 |
-| 30-pin plug | Male 30-pin dock breakout / connector | Mates with factory cable |
-| Accessory-ID | Resistor (value TBD by capture) on pin 21 | Tell car which iPod mode |
+| 30-pin connector | **Female** 30-pin receptacle (see §6) to mate with the factory cable's male plug | Physical iPod-side interface |
+| Accessory-ID | Resistor (value TBD by capture) on pin 21 | Sense/set the iPod mode the car wants |
 | Power | Buck regulator from car-supplied rail to 3.3V/5V | Run adapter from the dock connector |
-| Bench | Logic analyzer (≥ 2 ch, 3.3V) | **Critical** — sniff iAP1 on pins 12/13 |
-| Bench | Real iPod or a Bovee dongle (if obtainable) | Reference traffic to capture |
 
 If the ESP32's onboard BT audio quality disappoints, fall back to a dedicated
 A2DP module (Microchip **BM83**, Qualcomm **QCC30xx/51xx**) and use the ESP32
@@ -168,9 +191,31 @@ The logic-analyzer capture of a known-good iPod (or Bovee) session answers
 
 ## 10. Phased plan
 
-1. **Recon / capture.** Logic-analyze a real iPod (or Bovee) talking to the car;
-   identify transport (serial/USB), baud, ID resistor, auth behavior, probe
-   sequence. *Answers the section-9 unknowns.*
+1. **Recon / capture** (tooling in §7a). Passively tap a real iPod ↔ car session
+   and capture the handshake — answers all of §9 at once. Procedure:
+   1. **Insert the breakout inline:** car cable ↔ breakout ↔ iPod, so both talk
+      normally while you probe. Confirm **pin-1 orientation** with a continuity
+      check before trusting the channel map.
+   2. **Wire the analyzer** (UART is single-ended — listen each line to GND):
+      CH0 → pin 12 (iPod→car Tx), CH1 → pin 13 (car→iPod Tx), GND → pin 11.
+      Set the analyzer to a **3.3 V** logic threshold.
+   3. **Capture the cold-boot handshake:** start the capture *first*, then key to
+      ACC / insert the iPod, and select iPod as the head-unit source. The opening
+      bytes are the car's identify request + the iPod's reply. Grab several
+      power-on cycles (cold boot can differ from warm reconnect).
+   4. **Capture controls + metadata:** press play/pause/next/prev on the **dash**
+      and **steering wheel** one at a time (note timestamps); with a track
+      playing, capture how the car requests and the iPod returns title / artist /
+      album / elapsed time.
+   5. **Measure pin 21 → GND** on the car-cable side (everything unplugged) to
+      read the accessory-ID resistor the car presents; **measure the power-pin
+      voltages** with the car on.
+   6. **Decode in PulseView/sigrok:** add a UART decoder per channel, **8N1,
+      try 19200** (if garbage, measure narrowest pulse → baud = 1/width).
+      iAP1 packets start with sync header **`0xFF 0x55`** → seeing it confirms
+      serial-mode iAP1. Map command IDs against `xtensa/PodEmu`'s tables; watch
+      for an auth challenge (auth lingo `0x02`) — its absence confirms no auth.
+   *Output: a labeled byte-level transcript the firmware can replay against.*
 2. **Audio first.** ESP32 A2DP sink → PCM5102 → into the car's analog pins.
    Prove clean audio + stable Bluetooth (AAC). Low risk, validates half the system.
 3. **Handshake.** Implement iAP1 device emulation so the car **recognizes** the
