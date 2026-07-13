@@ -14,6 +14,9 @@ assembled 2026-07-11 to answer:
   gas-piston precursors, the July 2026 sequence, and the interpretation of the
   2026-07-11 observation.
 - `data/sources.md` — source URLs for every claim.
+- `report/outlook.md` — future scenarios, Holocene precedents, volume ledger.
+- `education/` — DIY MSc-equivalent volcanology curriculum and five vetted
+  independent-research topics (`curriculum.md`, `research_topics.md`).
 
 ## Data-access notes
 
