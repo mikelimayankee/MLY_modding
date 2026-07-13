@@ -109,6 +109,34 @@ highest sustained effusion *rate* since at least the early Puʻuʻōʻō era —
 evidence the deep supply remains high, and the main argument against an imminent
 wind-down.
 
+## 4. Addendum (2026-07-13): overtopping arithmetic and the shared-source deep dive
+
+**Overtopping (back-of-envelope, flagged as ours — no official estimate exists):**
+The operative exit is not the high NW rim (Uēkahuna, ~1,257 m) but the low SW breach
+into the Kaʻū Desert, sill ≈ the pre-2018 upper caldera floor (~1,075–1,090 m) —
+proven passable by the March 1921 flow. Current fill surface: 1,005 m. Remaining
+collapse volume ≈ 0.52 km³; at the observed ~60% erupted-to-fill efficiency that is
+~0.85 km³ of eruption, i.e. **~5 years at the current 0.18 km³/yr pace (~7 years at
+Puʻuʻōʻō's long-term rate)** to bring lava to the SW spill point — with the caveats
+that fill efficiency falls as area grows, the 35% figure's vintage is uncertain, and
+history's alternative (rift-zone relief valve or NE-margin vent relocation à la
+ʻAilāʻau) has usually intervened before summit overflow. First overflow routing: SW
+through the breach across the Kaʻū Desert (1921/1971/1974 precedents; the 1974 flow
+ran ~12 km), threatening the closed south Crater Rim Drive and the Footprints/Mauna
+Iki area long before anything NE-side; the SE exit toward Keanakākoʻi (~1,128 m) and
+the Chain of Craters corridor engages ~40–50 m of fill later.
+
+**Pietruszka shared-source status:** three-source plume model (Kea endmember, Loa
+endmember, shared intermediate source between them, >80 km deep); 200-yr Pb/Sr/Nd +
+Nb/Y record; alternations match the eruption-history anticorrelation; ~2010 shift =
+shared melt diverting to Mauna Loa (culminating 2022). Complications: the 2026 Os
+paper (same group) finds the shared source "exerts negligible control" on Mauna Loa
+Os systematics; stress-transfer alternatives (Gonnermann 2012; Przeor 2022 "excludes
+a hydraulic connection"); timing tension with the 2003–07 supply surge TO Kīlauea;
+and no published reconciliation with 2024–26 high output (escape hatches: only the
+shared component diverts, and decadal transit lag). See
+`notes/mauna_loa_diversion.md` and `notes/caldera_overtopping.md`.
+
 ## Caveats
 
 All figures reconstructed via web search from USGS/HVO/journal sources (direct fetch
