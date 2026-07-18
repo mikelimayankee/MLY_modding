@@ -185,3 +185,38 @@ isn't, and a walkthrough of your episode-51 onset data.
 budget, and M4 seismic phenomenology around one episode you observed directly.
 M2 shows up as the composition of what erupted. This paper is deliberately the
 embryo of capstone topics 2–4.
+
+---
+
+## Appendix: acquisition links
+
+Used-book searches (ISBN-keyed, sorted to lowest price):
+- Parfitt & Wilson: https://www.abebooks.com/servlet/SearchResults?isbn=9780632054435&sortby=17 | https://www.bookfinder.com/search/?isbn=9780632054435&mode=isbn&st=sr&ac=qr
+- Encyclopedia of Volcanoes 2e: https://www.abebooks.com/servlet/SearchResults?isbn=9780123859389&sortby=17 | https://www.bookfinder.com/search/?isbn=9780123859389&mode=isbn&st=sr&ac=qr
+- Segall: https://www.abebooks.com/servlet/SearchResults?isbn=9780691133027&sortby=17 | https://www.bookfinder.com/search/?isbn=9780691133027&mode=isbn&st=sr&ac=qr
+- Winter 2e (optional): https://www.abebooks.com/9780321592576/Principles-Igneous-Metamorphic-Petrology-2nd-0321592573/plp (intl printing 9781292021539 often cheapest)
+- Modeling Volcanic Processes (Term II): https://www.abebooks.com/servlet/SearchResults?isbn=9780521895439&sortby=17
+
+Papers:
+- Cashman & Sparks 2013: https://pubs.geoscienceworld.org/gsa/gsabulletin/article-abstract/125/5-6/664/125884/
+- PP 1801 (free, all ch.): https://pubs.usgs.gov/pp/1801/ ; ch.5: https://pubs.usgs.gov/publication/pp18015
+- Cashman-Sparks-Blundy 2017 (open PDF): https://research-information.bris.ac.uk/ws/files/107826509/Science_Final_complete.pdf
+- Phil Trans R Soc A 2019: https://royalsocietypublishing.org/rsta/article/377/2139/20180298
+- Lynn et al. 2017: https://link.springer.com/article/10.1007/s00410-017-1395-4
+- Wanless 2006 JVGR: https://www.sciencedirect.com/science/article/abs/pii/S0377027305003173 ; G-Cubed (open): https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2005GC001086
+- Wang 2021 (open): https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2021JB021803
+- Anderson 2019: https://www.science.org/doi/10.1126/science.aaz1822
+- Chouet & Matoza 2013: https://www.sciencedirect.com/science/article/abs/pii/S0377027312003435
+- Matoza & Roman 2022 (open): https://link.springer.com/article/10.1007/s00445-022-01586-0
+- Thelen 2022 (free PDF): https://www.iavceivolcano.org/content/uploads/2023/03/13-thelen-et-al-trends-in-volcano-seismology.pdf
+- Chouet & Dawson 2015 (open): https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2014JB011789
+
+Tools/data:
+- alphaMELTS: https://github.com/magmasource/alphaMELTS ; applet: https://melts.ofm-research.org/
+- GEOROC/EarthChem: https://earthchem.org/data-access/overview
+- Thermobar: https://www.jvolcanica.org/ojs/index.php/volcanica/article/view/161
+- GBIS: https://comet.nerc.ac.uk/geodetic-bayesian-inversion-software-gbis/
+- MintPy: https://github.com/insarlab/MintPy ; recipe book: https://github.com/ASFOpenSARlab/opensarlab_MintPy_Recipe_Book
+- UWD tilt 2024: https://catalog.data.gov/dataset/tiltmeter-data-from-klauea-summit-stations-esc-iki-jka-kae-poc-sdh-uwd-uwe-from-ja-31-2024
+- UWD tilt Jan-Jun 2025: https://www.sciencebase.gov/catalog/item/67ead922d34ed02007f83585
+- FDSN HV: https://www.fdsn.org/networks/detail/HV/ ; services: https://service.iris.edu/fdsnws/
