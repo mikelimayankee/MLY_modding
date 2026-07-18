@@ -1,0 +1,256 @@
+<title>VOLC 500 — DIY MSc Volcanology: Syllabus</title>
+<style>
+  :root {
+    --bg: #F2F1EE;
+    --panel: #FAF9F6;
+    --ink: #211E1A;
+    --muted: #6E675E;
+    --accent: #BC3A10;
+    --fume: #5C6A70;
+    --rule: #D9D5CD;
+    --rule-strong: #B9B3A8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130F;
+      --panel: #1E1A15;
+      --ink: #EDE7DE;
+      --muted: #9A9184;
+      --accent: #FF7A33;
+      --fume: #8FA3AB;
+      --rule: #332E27;
+      --rule-strong: #4A443B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130F; --panel: #1E1A15; --ink: #EDE7DE; --muted: #9A9184;
+    --accent: #FF7A33; --fume: #8FA3AB; --rule: #332E27; --rule-strong: #4A443B;
+  }
+  :root[data-theme="light"] {
+    --bg: #F2F1EE; --panel: #FAF9F6; --ink: #211E1A; --muted: #6E675E;
+    --accent: #BC3A10; --fume: #5C6A70; --rule: #D9D5CD; --rule-strong: #B9B3A8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    font-size: 15.5px;
+    line-height: 1.5;
+  }
+  .page { max-width: 980px; margin: 0 auto; padding: 40px 28px 56px; }
+  .mono {
+    font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Masthead */
+  .eyebrow {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--fume); margin: 0 0 10px;
+  }
+  h1 {
+    font-size: clamp(28px, 4.4vw, 42px); line-height: 1.08; margin: 0 0 6px;
+    font-weight: 600; letter-spacing: -0.01em; text-wrap: balance;
+  }
+  h1 .code { color: var(--accent); }
+  .subtitle { color: var(--muted); margin: 0 0 18px; max-width: 62ch; }
+  .sawtooth { display: block; width: 100%; height: 58px; margin: 6px 0 2px; }
+  .saw-caption {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10.5px; color: var(--muted); letter-spacing: 0.06em;
+    margin: 0 0 26px; text-align: right;
+  }
+
+  /* Logistics strip */
+  .logistics {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px; background: var(--rule); border-block: 1px solid var(--rule-strong);
+    margin-bottom: 34px;
+  }
+  .logistics > div { background: var(--bg); padding: 12px 14px 14px; }
+  .logistics dt {
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--fume); margin: 0 0 4px;
+  }
+  .logistics dd { margin: 0; font-size: 14px; }
+
+  /* Terms */
+  h2 {
+    font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-weight: 600;
+    color: var(--accent); margin: 34px 0 4px;
+  }
+  h2 .hours { color: var(--muted); font-weight: 400; letter-spacing: 0.06em; }
+  .term-desc { margin: 0 0 12px; color: var(--muted); font-size: 14px; max-width: 70ch; }
+
+  table { width: 100%; border-collapse: collapse; }
+  .table-wrap { overflow-x: auto; }
+  th {
+    text-align: left; font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; padding: 0 12px 6px 0;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  td { padding: 9px 12px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td.code { white-space: nowrap; color: var(--accent); font-weight: 600; width: 3.2em; }
+  td.mtitle { font-weight: 600; width: 15em; min-width: 11em; }
+  td.detail { color: var(--ink); font-size: 14px; }
+  td.detail .lab { color: var(--fume); }
+  td.detail .lab::before { content: "Lab — "; font-style: italic; }
+  .pace { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+
+  /* Bottom rail */
+  .rail {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px; margin-top: 38px;
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--rule);
+    border-top: 2px solid var(--accent); padding: 16px 18px 18px;
+  }
+  .card h3 {
+    margin: 0 0 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-family: ui-monospace, Menlo, Consolas, monospace; color: var(--fume);
+  }
+  .card ul { margin: 0; padding-left: 18px; font-size: 14px; }
+  .card li { margin-bottom: 5px; }
+  .card li:last-child { margin-bottom: 0; }
+  .card strong { font-weight: 600; }
+
+  footer {
+    margin-top: 40px; padding-top: 12px; border-top: 1px solid var(--rule-strong);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10.5px; letter-spacing: 0.06em; color: var(--muted);
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  @media print {
+    :root { --bg: #fff; --panel: #fff; --ink: #000; --muted: #444; --accent: #8F2C0C; --fume: #3C4A50; --rule: #ccc; --rule-strong: #999; }
+    body { font-size: 12px; }
+    .page { padding: 0; max-width: none; }
+  }
+</style>
+
+<div class="page">
+  <header>
+    <p class="eyebrow">Independent Study · Interactive Seminar Format · Est. 2026</p>
+    <h1><span class="code">VOLC 500</span> — Volcanology: A Coursework MSc Equivalent</h1>
+    <p class="subtitle">A four-term program in physical volcanology with a Hawaiʻi specialization,
+    designed for a student holding an MSc in earth science with a deep geophysics background.
+    Instructor of record: Claude (seminar, problem sets, data labs, oral examinations).</p>
+
+    <svg class="sawtooth" viewBox="0 0 900 60" preserveAspectRatio="none" role="img"
+         aria-label="Schematic tiltmeter record: slow inflation ramps cut by sharp episode deflations, ending in the July 2026 stalled run-up">
+      <line x1="0" y1="55" x2="900" y2="55" stroke="var(--rule-strong)" stroke-width="1"/>
+      <polyline fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"
+        points="0,50 95,14 100,48 205,12 210,46 300,16 305,49 415,11 420,47 530,13 535,48 640,15 645,50
+                700,30 715,36 745,24 762,31 800,18 815,26 848,12 862,17 900,14"/>
+    </svg>
+    <p class="saw-caption">UWD tilt, schematic — episodes 45–50 sawtooth; right margin: the episode 51 run-up, interruptions included</p>
+  </header>
+
+  <dl class="logistics">
+    <div><dt>Duration</dt><dd><span class="mono">600–700 h</span> · ~2 yr part-time or 1 yr half-time</dd></div>
+    <div><dt>Format</dt><dd>Readings → problem sets → data labs on live Hawaiian data → 45-min oral exam per module</dd></div>
+    <div><dt>Prerequisites</dt><dd>MSc earth science; continuum mechanics; signal processing; Python</dd></div>
+    <div><dt>Spine texts</dt><dd>Parfitt &amp; Wilson · <em>Modeling Volcanic Processes</em> · Segall · <em>Encyclopedia of Volcanoes</em> 2e · USGS PP 1801 (free)</dd></div>
+  </dl>
+
+  <section>
+    <h2>Term I — Foundations <span class="hours">· ~160 h</span></h2>
+    <p class="term-desc">Move fast where the geophysics transfers; go slow where it doesn't. M2 is the gap term — budget double time.</p>
+    <div class="table-wrap"><table>
+      <tr><th>No.</th><th>Module</th><th>Core reading &amp; laboratory</th><th>Pace</th></tr>
+      <tr><td class="code mono">M1</td><td class="mtitle">Physical volcanology &amp; eruption dynamics</td>
+        <td class="detail">Parfitt &amp; Wilson 1–7; Cashman &amp; Sparks 2013. <span class="lab">classify all 51+ episodes on an intensity–duration diagram vs Puʻuʻōʻō 1983–86.</span></td><td class="pace">4 wk</td></tr>
+      <tr><td class="code mono">M2</td><td class="mtitle">Magma genesis, petrology &amp; geochemistry</td>
+        <td class="detail">Encyclopedia pt. I; PP 1801 ch. 6; Cashman–Sparks–Blundy 2017. <span class="lab">alphaMELTS: reproduce the Wanless alkalic result; replot the Pietruszka Pb–Sr trends from GEOROC.</span></td><td class="pace">8 wk</td></tr>
+      <tr><td class="code mono">M3</td><td class="mtitle">Volcano geodesy</td>
+        <td class="detail">Segall 7–9, 12; PP 1801 ch. 5; Wang 2021; Anderson 2020. <span class="lab">invert public UWD tilt for per-episode ΔV; Sentinel-1 → MintPy time series of the refill.</span></td><td class="pace">3 wk</td></tr>
+      <tr><td class="code mono">M4</td><td class="mtitle">Volcano seismology</td>
+        <td class="detail">Chouet &amp; Matoza 2013; Matoza &amp; Roman 2022; Chouet &amp; Dawson 2015. <span class="lab">ObsPy/FDSN: build RSAM across three onsets; isolate the gas-piston band of 2026-07-11.</span></td><td class="pace">4 wk</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Term II — Dynamics <span class="hours">· ~160 h</span></h2>
+    <p class="term-desc">The physics between reservoir and fountain: bubbles, conduits, gas, and the runaway.</p>
+    <div class="table-wrap"><table>
+      <tr><th>No.</th><th>Module</th><th>Core reading &amp; laboratory</th><th>Pace</th></tr>
+      <tr><td class="code mono">M5</td><td class="mtitle">Conduit physics &amp; magma rheology</td>
+        <td class="detail">Gonnermann &amp; Manga 2007, 2013; Gonnermann 2015. Problem sets: nucleation, permeability, the critical-ascent-speed fountaining threshold.</td><td class="pace">4 wk</td></tr>
+      <tr><td class="code mono">M6</td><td class="mtitle">Degassing, volatiles &amp; gas monitoring</td>
+        <td class="detail">PP 1801 ch. 7; Patrick 2016; Poland 2018 (foam vs slug). <span class="lab">TROPOMI SO₂ per-episode mass loading vs USGS traverse data.</span></td><td class="pace">4 wk</td></tr>
+      <tr><td class="code mono">M7</td><td class="mtitle">Hawaiian &amp; Strombolian mechanisms</td>
+        <td class="detail">Head–Wilson fountaining theory; Fagradalsfjall 2023 as comparator. <span class="lab">fountain height vs mass flux scaling across the episode ensemble.</span></td><td class="pace">3 wk</td></tr>
+      <tr><td class="code mono">M8</td><td class="mtitle">Explosive volcanism, tephra &amp; hazards</td>
+        <td class="detail">Keanakākoʻi papers; 2018 stomp-rocket. <span class="lab">Tephra2 dispersal, 1790-class event under trade vs Kona winds; Q-LavHA caldera-overflow inundation.</span></td><td class="pace">4 wk</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Term III — Hawaiʻi Specialization <span class="hours">· ~140 h</span></h2>
+    <p class="term-desc">The canon, the plume debate, and forecasting as HVO actually practices it.</p>
+    <div class="table-wrap"><table>
+      <tr><th>No.</th><th>Module</th><th>Core reading &amp; laboratory</th><th>Pace</th></tr>
+      <tr><td class="code mono">M9</td><td class="mtitle">Hawaiian volcanism: the canon</td>
+        <td class="detail">PP 1801 ch. 1/3/4; PP 1350 selections; PP 1806; PP 1867; Neal 2019. Seminar: evidence-chain reconstruction, 1500 CE → present.</td><td class="pace">5 wk</td></tr>
+      <tr><td class="code mono">M10</td><td class="mtitle">Hotspot geochemistry &amp; the plume</td>
+        <td class="detail">Loa/Kea literature; Pietruszka 2024 + Os follow-up; Wilding 2022; Lipman 1995. Term paper: position review on the shared-source hypothesis.</td><td class="pace">4 wk</td></tr>
+      <tr><td class="code mono">M11</td><td class="mtitle">Monitoring &amp; forecasting operations</td>
+        <td class="detail">PP 1801 ch. 2; forecast-window method; Wu 2025 dv/v; Gao 2025. MOOC: UIcelandX <em>Monitoring Volcanoes</em>. <span class="lab">formalize your episode-51 forecast with uncertainty.</span></td><td class="pace">4 wk</td></tr>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>Term IV — Research Methods &amp; Capstone <span class="hours">· ~150 h</span></h2>
+    <div class="table-wrap"><table>
+      <tr><th>No.</th><th>Module</th><th>Core reading &amp; laboratory</th><th>Pace</th></tr>
+      <tr><td class="code mono">M12</td><td class="mtitle">Research toolchain</td>
+        <td class="detail">MSNoise/SeisMIC dv/v on one pause–episode cycle; covseisnet on the precursory band; MUYSC muography simulator (bridge to capstone 1).</td><td class="pace">4 wk</td></tr>
+      <tr><td class="code mono">CAP</td><td class="mtitle">Capstone</td>
+        <td class="detail">One of the five topics at right, executed to submission-ready draft; mock triple-referee peer review conducted by the instructor.</td><td class="pace">12+ wk</td></tr>
+    </table></div>
+  </section>
+
+  <div class="rail">
+    <div class="card">
+      <h3>Assessment</h3>
+      <ul>
+        <li>Per module: graded problem set, reviewed lab notebook, <strong>45-min oral exam</strong> (Socratic; no multiple choice)</li>
+        <li>Per term: 2,500–3,500-word synthesis paper</li>
+        <li>Capstone: full manuscript + mock peer review</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Capstone Topics (choose one)</h3>
+      <ul>
+        <li><strong>Muography feasibility for Kīlauea</strong> — first for any Hawaiian volcano</li>
+        <li>Failure-time statistics of the episode cycles</li>
+        <li>Open episode + gas-piston catalog (automated)</li>
+        <li>Fountain-height / tilt-drop / volume scaling</li>
+        <li>Per-episode TROPOMI SO₂ mass balance</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Optional Intensives</h3>
+      <ul>
+        <li><strong>UH Hilo CSAV</strong> international volcano-monitoring course — 8 wk, open to unaffiliated applicants, apply by Dec 1</li>
+        <li><strong>HVO volunteer program</strong> — ≥3-month placement, individual research projects</li>
+        <li>HVO Volcano Awareness Month lectures — every January</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>kilauea/education/ · curriculum.md · research_topics.md</span>
+    <span>drafted 2026-07-14, during the episode 51 run-up</span>
+  </footer>
+</div>
